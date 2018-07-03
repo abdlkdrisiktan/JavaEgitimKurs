@@ -5,8 +5,6 @@ import com.bisoft.artistlife.ArtistProject.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("album")
 public class AlbumController {
