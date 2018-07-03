@@ -1,50 +1,51 @@
 package com.bisoft.artistlife.ArtistProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.Table;
-import java.util.List;
+import javax.persistence.*;
 
 
 
+@Table(name = "artist")
+@Entity
 public class Artist {
 
     //    The ID for the artist.
+    @Getter
+    @Setter
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    @Getter
-    @Setter
-    private String id;
+    private Long id;
 
-    //    The name of the artist
-    @Getter
-    @Setter
-    private String name;
-
-    //    Known external URLs for this artist.
-    @Getter
-    @Setter
-    private String external_url;
-
-    //    A list of the genres the artist is associated with
-    @Getter
-    @Setter
-    private List<String> genres;
-
-    //    Information about the followers of the artist.
-    @Getter
-    @Setter
-    private List<Followers> followersList;
-
-    //    Images of the artist in various sizes, widest first.
-    @Getter
-    @Setter
-    private List<Images> imagesList;
+//
+//    //    The name of the artist
+//    @Getter
+//    @Setter
+//    private String name;
+//
+//    //    Hyper link for this artist.
+//    @Getter
+//    @Setter
+//    private String href;
+//
+//    //    A list of the genres the artist is associated with
+//    @Getter
+//    @Setter
+//    private List<String> genres;
+//
+//    //    Information about the followers of the artist.
+//    @Getter
+//    @Setter
+//    private List<Followers> followersList;
+//
+//    //    Images of the artist in various sizes, widest first.
+//    @Getter
+//    @Setter
+//    private List<Images> imagesList;
 
 
 }
