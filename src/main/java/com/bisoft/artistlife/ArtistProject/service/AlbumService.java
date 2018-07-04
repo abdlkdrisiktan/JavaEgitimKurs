@@ -4,9 +4,7 @@ import com.bisoft.artistlife.ArtistProject.entity.Album;
 import com.bisoft.artistlife.ArtistProject.repository.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,14 +13,6 @@ public class AlbumService {
     @Autowired
     AlbumRepository albumRepository;
 
-    public String deneme(){
-        System.out.println("asdasddasa");
-        Album album = new Album();
-        album.setName("deneme");
-        albumRepository.save(album);
-        return "asd";
-    }
-
     public Album saveAlbumData(String name){
         Album album = new Album();
         album.setName(name);
@@ -30,7 +20,45 @@ public class AlbumService {
         return album;
     }
 
-    public Iterable<Album> getAllAlbumData(){
-        return albumRepository.findAll();
+    public List<Album> getAllAlbumData(){
+        return (List<Album>) albumRepository.findAll();
     }
+
+    public Album getAlbumById(Long id){
+        Album album = albumRepository.findOne(id);
+        if (album!=null){
+            return album;
+        }else {
+            album= new Album();
+            return album;
+        }
+    }
+
+    public String deleteAlbumById(Long id){
+        Album album = albumRepository.findOne(id);
+        if (album!=null){
+            albumRepository.delete(album);
+            return "Deleted";
+        } else{
+            return "Sorry there is no data here :)";
+        }
+    }
+
+    public String updateAlbumById(Long id, String name){
+        Album album = albumRepository.findOne(id);
+        if (album!=null){
+            if (!album.getName().contentEquals(name)){
+                album.setName(name);
+                albumRepository.save(album);
+                return "Updated";
+            }else {
+                return "Album data name is already updated";
+            }
+        }else {
+            return "Sorry there is no data here :)";
+        }
+    }
+
+
+
 }
