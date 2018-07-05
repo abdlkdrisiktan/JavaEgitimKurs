@@ -8,16 +8,24 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/album")
+@RequestMapping("album")
 public class AlbumController {
 
     @Autowired
     AlbumService albumService;
 
-    @PostMapping(value = "saveAlbum")
-    public Album saveAlbumData(@RequestParam(value = "name") String name) {
-        return albumService.saveAlbumData(name);
+//    ******************************************************************
+//    Save album methods
+
+    @RequestMapping(value = "saveAlbumData")
+    public Album saveAlbumData(@RequestBody Album album){
+        return albumService.saveAlbumData(album);
     }
+
+//    @PostMapping(value = "saveAlbum")
+//    public Album saveAlbumData(@RequestParam(value = "name") String name) {
+//        return albumService.saveAlbumData(name);
+//    }
 
     @GetMapping(value = "getAllAlbumData")
     public List<Album> getAllAlbumData() {

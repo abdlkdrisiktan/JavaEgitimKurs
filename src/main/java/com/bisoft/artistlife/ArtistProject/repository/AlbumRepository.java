@@ -11,4 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface AlbumRepository extends CrudRepository<Album,Long> {
 
 //    Album findById(Long id);
+
+    Album findByName(String name);
 }

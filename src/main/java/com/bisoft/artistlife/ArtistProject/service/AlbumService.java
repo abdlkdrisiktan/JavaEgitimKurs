@@ -1,7 +1,9 @@
 package com.bisoft.artistlife.ArtistProject.service;
 
 import com.bisoft.artistlife.ArtistProject.entity.Album;
+import com.bisoft.artistlife.ArtistProject.entity.Followers;
 import com.bisoft.artistlife.ArtistProject.repository.AlbumRepository;
+import com.bisoft.artistlife.ArtistProject.repository.FollowerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +15,17 @@ public class AlbumService {
     @Autowired
     AlbumRepository albumRepository;
 
-    public Album saveAlbumData(String name){
-        Album album = new Album();
-        album.setName(name);
-        albumRepository.save(album);
-        return album;
+
+    @Autowired
+    FollowerRepository followerRepository;
+
+    public Album saveAlbumData(Album album){
+        if (album!=null && album.getName()!=null ){
+            albumRepository.save(album);
+            return album;
+        }else {
+            return new Album();
+        }
     }
 
     public List<Album> getAllAlbumData(){

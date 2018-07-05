@@ -12,20 +12,24 @@ import javax.persistence.*;
 @Entity
 public class Track {
 
+    //  The ID for the Track
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
-
-    private String name;
-
-    private String href;
-
-    private int durationMs;
-
-    @ManyToOne
-    private Artist artist;
-
-    @ManyToOne
-    private Album album;
+//
+//    //  The name for the Track
+//    private String name;
+//
+//    //  The hyper link for the Album
+//    private String href;
+//
+//    //  The duration for the Track
+//    private int durationMs;
+//
+//    @ManyToOne
+//    private Artist artist;
+//
+//    @ManyToOne
+//    private Album album;
 
 }
