@@ -1,15 +1,14 @@
 package com.bisoft.artistlife.ArtistProject.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Table(name = "followers")
-@EntityListeners(AuditingEntityListener.class)
 @Data
 @Entity
 public class Followers {
@@ -25,7 +24,9 @@ public class Followers {
     private String name;
 
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "followers")
+
+    @JsonBackReference
+    @ManyToMany(mappedBy = "followers")
     private List<Album> albums;
 
 //    @Getter

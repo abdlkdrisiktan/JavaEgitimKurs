@@ -29,13 +29,11 @@ public class Album {
     @Column(name = "albumType")
     private String albumType;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinTable(name = "album_followers",joinColumns = {@JoinColumn(name = "album_id")},
-    inverseJoinColumns = {@JoinColumn(name = "followers_id")})
+    @ManyToMany
     private List<Followers> followers;
 
-//    @ManyToOne
-//    private Artist artist;
+    @ManyToOne
+    private Artist artist;
 //
 //    @OneToMany(mappedBy = "album")
 //    private List<Track> tracks;

@@ -15,16 +15,17 @@ public class AlbumService {
     @Autowired
     AlbumRepository albumRepository;
 
-
     @Autowired
     FollowerRepository followerRepository;
 
-    public Album saveAlbumData(Album album){
-        if (album!=null && album.getName()!=null ){
-            albumRepository.save(album);
-            return album;
+    public String saveAlbumData(Album album){
+        System.out.println(album.getName());
+        Album tempAlbum = albumRepository.findByName(album.getName());
+        if (tempAlbum!=null){
+            return "Data already exists";
         }else {
-            return new Album();
+            albumRepository.save(album);
+            return "Data saved";
         }
     }
 
@@ -67,6 +68,29 @@ public class AlbumService {
         }
     }
 
-
+    public void saveAlbumFollowersData(Long followerId,Long albumId){
+        Followers followers = followerRepository.findOne(followerId);
+        Album album= albumRepository.findOne(albumId);
+        if (followers!=null && album!=null){
+            List<Followers> tempFollowerList = album.getFollowers();
+            boolean isExists= false;
+            for (int i=0; i<tempFollowerList.size();i++){
+                if (tempFollowerList.get(i).getName().contentEquals(followers.getName())){
+                    isExists=true;
+                    System.out.println("is exists"+ isExists);
+                }
+            }if (!isExists){
+                tempFollowerList.add(followers);
+                album.setFollowers(tempFollowerList);
+                albumRepository.save(album);
+                System.out.println("album data saved");
+            }
+        } else {
+            if (followers==null)
+                System.out.println("followers is null");
+            if (album==null)
+                System.out.println("album is null");
+        }
+    }
 
 }

@@ -17,8 +17,9 @@ public class AlbumController {
 //    ******************************************************************
 //    Save album methods
 
+//    http://localhost:9090/album/saveAlbumData
     @RequestMapping(value = "saveAlbumData")
-    public Album saveAlbumData(@RequestBody Album album){
+    public String saveAlbumData(@RequestBody Album album){
         return albumService.saveAlbumData(album);
     }
 
@@ -72,6 +73,12 @@ public class AlbumController {
     @RequestMapping(value = "updateAlbumDataById/{id}/{name}", method = RequestMethod.POST)
     public String updateAlbumDataById(@PathVariable Long id, @PathVariable String name){
         return albumService.updateAlbumById(id,name);
+    }
+
+//    http://localhost:9090/follower/saveFollowersData/27/28
+    @RequestMapping(value = "saveAlbumFollowersData/{albumId}/{followerId}",method = RequestMethod.POST)
+    public void saveAlbumFollowersData(@PathVariable Long followerId, @PathVariable Long albumId){
+        albumService.saveAlbumFollowersData(followerId,albumId);
     }
 
 

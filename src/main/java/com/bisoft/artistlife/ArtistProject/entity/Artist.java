@@ -17,12 +17,14 @@ public class Artist {
     @Id
     private Long id;
 
-//    //  Artist name
-//    private String name;
-//
-//    @OneToMany(mappedBy = "artist")
-//    private List<Album> albums;
-//
+    //  Artist name
+    private String name;
+
+
+    @OneToMany(mappedBy = "artist")
+    private List<Album> albums;
+
+
 //
 //    @OneToMany(mappedBy = "artist")
 //    private List<Track>tracks;
