@@ -93,4 +93,11 @@ public class AlbumService {
         }
     }
 
+    public Album findAlbumData(Long albumId){
+        Album album = albumRepository.findOne(albumId);
+        if (album!=null)
+            return album;
+        else return new Album();
+    }
+
 }

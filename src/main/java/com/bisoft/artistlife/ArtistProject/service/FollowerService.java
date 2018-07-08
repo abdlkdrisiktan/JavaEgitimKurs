@@ -64,10 +64,15 @@ public class FollowerService {
         }
     }
 
-
-
-
-
+    public String deleteFollower(Long id){
+       Followers followers = followerRepository.findOne(id);
+        if (followers!=null){
+            followerRepository.delete(followers);
+            return "Deleted";
+        } else{
+            return "Sorry there is no data here :)";
+        }
+    }
 
 }
 

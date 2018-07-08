@@ -23,8 +23,6 @@ public class Followers {
     @Column(name = "total")
     private String name;
 
-
-
     @JsonBackReference
     @ManyToMany(mappedBy = "followers")
     private List<Album> albums;
