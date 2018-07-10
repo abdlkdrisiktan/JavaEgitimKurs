@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<!--<script src="angular/angular-resource.min.js"></script>-->
+<script  src="/js/album.js"></script>
+
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table, td, th {
+            border: 1px solid black;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="table-responsive" ng-app="ArtistProjectApp" ng-controller="AlbumController" ng-init="pageOpen()">
+    <form>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Album name</th>
+                <th>Album href</th>
+                <th>Album type</th>
+                <th>Update</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="album in albumList">
+                <td>{{album.name}}</td>
+                <td>{{album.href}}</td>
+                <td>{{album.albumType}}</td>
+                <td><button href="static/Index.html" type="button" class="btn btn-danger">Update</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+</body>
+</html>
