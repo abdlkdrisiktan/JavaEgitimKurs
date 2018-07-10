@@ -27,10 +27,4 @@ public class Followers {
     @ManyToMany(mappedBy = "followers")
     private List<Album> albums;
 
-//    @Getter
-//    @Setter
-//    @ManyToMany(mappedBy = "followers")
-//    private List<Album> albums;
-
-
 }

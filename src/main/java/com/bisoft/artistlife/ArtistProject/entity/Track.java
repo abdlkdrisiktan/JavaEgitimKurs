@@ -6,7 +6,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
-@EntityListeners(AuditingEntityListener.class)
+
 @Table(name = "track")
 @Data
 @Entity
@@ -16,20 +16,20 @@ public class Track {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
-//
-//    //  The name for the Track
-//    private String name;
-//
-//    //  The hyper link for the Album
-//    private String href;
-//
-//    //  The duration for the Track
-//    private int durationMs;
-//
+
+    //  The name for the Track
+    private String name;
+
+    //  The hyper link for the Album
+    private String href;
+
+    //  The duration for the Track
+    private int durationMs;
+
 //    @ManyToOne
 //    private Artist artist;
-//
-//    @ManyToOne
-//    private Album album;
+
+    @ManyToOne
+    private Album album;
 
 }

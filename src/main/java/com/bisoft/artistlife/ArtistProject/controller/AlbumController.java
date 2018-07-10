@@ -3,6 +3,7 @@ package com.bisoft.artistlife.ArtistProject.controller;
 import com.bisoft.artistlife.ArtistProject.entity.Album;
 import com.bisoft.artistlife.ArtistProject.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,8 +20,9 @@ public class AlbumController {
 
 //    http://localhost:9090/album/saveAlbumData
     @RequestMapping(value = "saveAlbumData")
-    public String saveAlbumData(@RequestBody Album album){
-        return albumService.saveAlbumData(album);
+    public HttpStatus saveAlbumData(@RequestBody Album album){
+         albumService.saveAlbumData(album);
+         return HttpStatus.OK;
     }
 
 //    @PostMapping(value = "saveAlbum")
@@ -28,7 +30,7 @@ public class AlbumController {
 //        return albumService.saveAlbumData(name);
 //    }
 
-    @GetMapping(value = "getAllAlbumData")
+    @RequestMapping(value = "getAllAlbumData",method = RequestMethod.GET)
     public List<Album> getAllAlbumData() {
         return albumService.getAllAlbumData();
     }

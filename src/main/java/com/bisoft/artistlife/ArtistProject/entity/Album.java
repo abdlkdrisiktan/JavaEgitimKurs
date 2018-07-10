@@ -1,13 +1,11 @@
 package com.bisoft.artistlife.ArtistProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Table(name = "album")
-@EntityListeners(AuditingEntityListener.class)
 @Data
 @Entity
 public class Album {
@@ -34,7 +32,8 @@ public class Album {
 
     @ManyToOne
     private Artist artist;
-//
-//    @OneToMany(mappedBy = "album")
-//    private List<Track> tracks;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "album")
+    private List<Track> tracks;
 }

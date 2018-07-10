@@ -1,7 +1,5 @@
 package com.bisoft.artistlife.ArtistProject.service;
 
-
-import com.bisoft.artistlife.ArtistProject.entity.Album;
 import com.bisoft.artistlife.ArtistProject.entity.Artist;
 import com.bisoft.artistlife.ArtistProject.repository.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,43 +10,24 @@ import java.util.List;
 @Service
 public class ArtistService {
 
-
     @Autowired
     ArtistRepository artistRepository;
 
-
-    @Autowired
-    AlbumService albumService;
-
-    @Autowired
-    ArtistService artistService;
-
-
-
-    public String saveArtistData(Artist artist){
-        Artist tempArtist = artistRepository.findByName(artist.getName());
-        if (tempArtist!=null)
-            return "Data already exists";
-        else{
-            artistRepository.save(artist);
-            return "Data saved";
-        }
+    public void saveArtistData(Artist artist){
+        artistRepository.save(artist);
     }
 
-    public void saveArtistAlbumData(Long artistId,Long albumId){
-        Album album = albumService.findAlbumData(albumId);
-        Artist artist = artistService.findArtistData(artistId);
-//        List<Album> tempAlbumList = album.get
+    public List<Artist> getAllArtistData (){
+        return (List<Artist>) artistRepository.findAll();
     }
 
 
-    public Artist findArtistData(Long artistId){
-        Artist artist = artistRepository.findOne(artistId);
-        if (artist!=null)
-            return artist;
-        else
-            return new Artist();
-
-    }
 
 }
+//
+//
+//vAs the first answer suggests:
+//
+//        Do not use Lombok's @Data annotation on @Entity classes.
+//
+//        Reason: @Data generates hashcode(), equals() and toString() methods that use the generated getters. Using the getter means of course fetching new data even if the property was marked with FetchType=LAZY.
