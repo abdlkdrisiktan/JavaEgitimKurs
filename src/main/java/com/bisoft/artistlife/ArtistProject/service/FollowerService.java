@@ -74,6 +74,10 @@ public class FollowerService {
         }
     }
 
+    public List<Followers> getAllFollowerData(){
+        return (List<Followers>) followerRepository.findAll();
+    }
+
 }
 
 

@@ -34,4 +34,9 @@ public class FollowerController {
         followerService.unFollowAlbumData(albumId,followerId);
     }
 
+    @RequestMapping(value = "getAllFollowerData",method = RequestMethod.GET)
+    public List<Followers> getAllFollowerData(){
+        return followerService.getAllFollowerData();
+    }
+
 }

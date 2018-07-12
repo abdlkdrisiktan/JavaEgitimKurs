@@ -5,9 +5,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<!--<script src="angular/angular-resource.min.js"></script>-->
-<script  src="/js/album.js"></script>
-
+<script src="/js/album.js"></script>
 <head>
     <style>
         table {
@@ -21,8 +19,33 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
 <div class="table-responsive" ng-app="ArtistProjectApp" ng-controller="AlbumController" ng-init="pageOpen()">
+
+    <div class="form-group">
+        <label for="name">Album name</label>
+        <input type="text" class="form-control" id="name" ng-model="album.name" placeholder="Album Name">
+    </div>
+
+    <div class="form-group">
+        <label for="href">Album href</label>
+        <input type="text" class="form-control" id="href" ng-model="album.href" placeholder="Album href">
+    </div>
+
+    <div class="form-group">
+        <label for="type">Album type</label>
+        <input type="text" class="form-control" id="type" ng-model="album.albumType" placeholder="Album type">
+    </div>
+
+    <div class="form-group">
+        <label>Artist</label>
+        <select ng-options="x.name for x in artistList track by x.id" ng-model="album.artist"></select>
+    </div>
+
+    <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+
+    <h2> Album Table</h2>
     <form>
         <table class="table">
             <thead>
@@ -30,6 +53,7 @@
                 <th>Album name</th>
                 <th>Album href</th>
                 <th>Album type</th>
+                <th>Artist</th>
                 <th>Update</th>
             </tr>
             </thead>
@@ -38,11 +62,22 @@
                 <td>{{album.name}}</td>
                 <td>{{album.href}}</td>
                 <td>{{album.albumType}}</td>
-                <td><button href="static/Index.html" type="button" class="btn btn-danger">Update</button></td>
+                <td>{{album.artist.name}}</td>
+                <td>
+                    <button href="static/Index.html" type="button" class="btn btn-warning" ng-click="selectAlbum(album)">
+                        Update
+                    </button>
+                </td>
+                <td>
+                    <button href="static/Index.html" type="button" class="btn btn-danger"
+                            ng-click="deleteAlbum(album)">Delete
+                    </button>
+                </td>
             </tr>
             </tbody>
         </table>
     </form>
 </div>
 </body>
+
 </html>

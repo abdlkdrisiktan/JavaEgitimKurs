@@ -57,9 +57,15 @@ public class AlbumController {
 //        return albumService.deleteAlbumById(id);
 //    }
 //    http://localhost:9090/album/deleteAlbumDataById/3
-    @RequestMapping(value = "deleteAlbumDataById/{id}", method = RequestMethod.DELETE)
-    public String deleteAlbumById(@PathVariable Long id) {
-        return albumService.deleteAlbumById(id);
+//    @RequestMapping(value = "deleteAlbumDataById/{id}", method = RequestMethod.POST)
+//    public String deleteAlbumById(@PathVariable Long id) {
+//        return albumService.deleteAlbumById(id);
+//    }
+
+    @RequestMapping(value = "deleteAlbumData", method = RequestMethod.POST)
+    public HttpStatus deleteAlbumData(@RequestBody Album album){
+        albumService.deleteAlbumData(album);
+        return HttpStatus.OK;
     }
 
 //    ******************************************************************

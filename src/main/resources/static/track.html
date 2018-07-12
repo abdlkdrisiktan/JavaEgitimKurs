@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="/js/track.js"></script>
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table, td, th {
+            border: 1px solid black;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="table-responsive" ng-app="ArtistProjectApp" ng-controller="TrackController" ng-init="pageOpen()">
+    <div class="form-group">
+        <label for="name">Track name</label>
+        <input type="text" class="form-control" id="name" ng-model="track.name" placeholder="Track name">
+    </div>
+
+    <div class="form-group">
+        <label for="href">Track href</label>
+        <input type="text" class="form-control" id="href" ng-model="track.href" placeholder="Track href">
+    </div>
+
+    <div class="form-group">
+        <label for="duration">Duration(ms)</label>
+        <input type="number" min="0" max="999999" class="form-control" id="duration" ng-model="track.durationMs" placeholder="Track duration">
+    </div>
+
+    <div class="form-group">
+        <label>Album</label>
+        <select ng-options="x.name for x in albumList track by x.id" ng-model="track.album"></select>
+    </div>
+
+    <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+
+
+    <h2>Track Table</h2>
+    <form>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Track name</th>
+                <th>Track href</th>
+                <th>Track duration(ms)</th>
+                <th>Album name</th>
+                <th>Update</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="track in trackList">
+                <td>{{track.name}}</td>
+                <td>{{track.href}}</td>
+                <td>{{track.durationMs}}</td>
+                <td>{{track.album.name}}</td>
+                <td>
+                    <button href="static/Index.html" type="button" class="btn btn-danger" ng-click="deleteTrackData(track)">Delete
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+</body>
+</html>

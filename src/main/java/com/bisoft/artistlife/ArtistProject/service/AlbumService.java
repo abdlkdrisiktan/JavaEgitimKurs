@@ -54,6 +54,10 @@ public class AlbumService {
         }
     }
 
+    public void deleteAlbumData(Album album){
+        albumRepository.delete(album);
+    }
+
     public String updateAlbumById(Long id, String name) {
         Album album = albumRepository.findOne(id);
         if (album != null) {

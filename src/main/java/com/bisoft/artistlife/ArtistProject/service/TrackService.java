@@ -27,4 +27,8 @@ public class TrackService {
         logger.info(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
         return (List<Track>) trackRepository.findAll();
     }
+
+    public void deleteTrackData(Track track){
+        trackRepository.delete(track);
+    }
 }

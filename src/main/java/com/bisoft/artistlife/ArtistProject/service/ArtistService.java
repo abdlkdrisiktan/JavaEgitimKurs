@@ -19,6 +19,7 @@ public class ArtistService {
 
     public List<Artist> getAllArtistData (){
         return (List<Artist>) artistRepository.findAll();
+
     }
 
 
