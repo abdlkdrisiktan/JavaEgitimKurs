@@ -39,7 +39,7 @@ public class TrackController {
 
     @RequestMapping(value = "deleteTrackData", method = RequestMethod.POST)
     public HttpStatus deleteTrackData(@RequestBody Track track){
-        trackService.equals(track);
+        trackService.deleteTrackData(track);
         return HttpStatus.OK;
     }
 

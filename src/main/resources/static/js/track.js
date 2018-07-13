@@ -26,8 +26,12 @@ var myAlbum = angular.module("ArtistProjectApp",[])
             })
         };
 
+        $scope.selectTrack= function (track) {
+          $scope.track =track ;
+        };
+
         $scope.getAllAlbumList = function () {
-            var res = $http.get('/album/getAllAlbumData')
+            var res = $http.get('/album/getAllAlbumData');
             res.then(function (response) {
                 $scope.albumList = response.data;
             })
@@ -35,7 +39,7 @@ var myAlbum = angular.module("ArtistProjectApp",[])
 
         $scope.deleteTrackData= function (track) {
             $scope.track=track;
-            var res = $http.post('/deleteTrackData',$scope.album)
+            var res = $http.post('/track/deleteTrackData',$scope.track)
             res.then(function (response) {
                 $scope.track={};
                 $scope.getAllTrackList();

@@ -55,6 +55,7 @@
                 <th>Album type</th>
                 <th>Artist</th>
                 <th>Update</th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody>
@@ -64,7 +65,8 @@
                 <td>{{album.albumType}}</td>
                 <td>{{album.artist.name}}</td>
                 <td>
-                    <button href="static/Index.html" type="button" class="btn btn-warning" ng-click="selectAlbum(album)">
+                    <button href="static/Index.html" type="button" class="btn btn-warning"
+                            ng-click="selectAlbum(album)">
                         Update
                     </button>
                 </td>
