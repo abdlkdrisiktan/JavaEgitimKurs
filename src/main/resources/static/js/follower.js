@@ -15,4 +15,18 @@ var myFollower = angular.module("ArtistProjectApp", [])
             })
         };
 
+        $scope.save = function () {
+            var res = $http.post('follower/followAlbumDataByFollower', $scope.album);
+            res.then(function (value) {
+                alert(value.data);
+                $scope.getAllFollowerList();
+            })
+        }
+
+        $scope.selectFollower = function (follower) {
+            $scope.follower = follower;
+            var res =
+
+        }
+
     });

@@ -1,14 +1,19 @@
-var myAlbum = angular.module("ArtistProjectApp",[])
-    .controller("TrackController",function ($scope, $http) {
-
-
+var myAlbum = angular.module("ArtistProjectApp", [])
+    .controller("TrackController", function ($scope, $http) {
         $scope.track = {};
-        $scope.trackList=[];
-
+        $scope.trackList = [];
 
         $scope.pageOpen = function () {
-           $scope.getAllTrackList();
-           $scope.getAllAlbumList();
+            $scope.getAllTrackList();
+            $scope.getAllAlbumList();
+            // var duration = document.getElementById('duration');
+            // duration.onkeydown = function (e) {
+            //     if (!((e.keyCode > 95 && e.keyCode < 106)
+            //             || (e.keyCode > 47 && e.keyCode < 58)
+            //             || e.keyCode == 8)) {
+            //         return false;
+            //     }
+            // };
         };
 
         $scope.getAllTrackList = function () {
@@ -19,15 +24,23 @@ var myAlbum = angular.module("ArtistProjectApp",[])
         };
 
         $scope.save = function () {
-            var res = $http.post('/track/saveTrackData',$scope.track);
+            var res = $http.post('/track/saveTrackData', $scope.track);
+            var duration = document.getElementById('duration');
+            duration.onkeydown = function (e) {
+                if (!((e.keyCode > 95 && e.keyCode < 106)
+                        || (e.keyCode > 47 && e.keyCode < 58)
+                        || e.keyCode == 8)) {
+                    return false;
+                }
+            };
             res.then(function (value) {
                 alert(value.data);
                 $scope.getAllTrackList();
             })
         };
 
-        $scope.selectTrack= function (track) {
-          $scope.track =track ;
+        $scope.selectTrack = function (track) {
+            $scope.track = track;
         };
 
         $scope.getAllAlbumList = function () {
@@ -37,15 +50,14 @@ var myAlbum = angular.module("ArtistProjectApp",[])
             })
         };
 
-        $scope.deleteTrackData= function (track) {
-            $scope.track=track;
-            var res = $http.post('/track/deleteTrackData',$scope.track)
+        $scope.deleteTrackData = function (track) {
+            $scope.track = track;
+            var res = $http.post('/track/deleteTrackData', $scope.track)
             res.then(function (response) {
-                $scope.track={};
+                $scope.track = {};
                 $scope.getAllTrackList();
             })
         };
-
 
 
     });

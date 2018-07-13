@@ -39,4 +39,14 @@ public class FollowerController {
         return followerService.getAllFollowerData();
     }
 
+    @RequestMapping(value = "followAlbumDataByFollower",method = RequestMethod.POST)
+    public void followAlbumDataByFollower(@RequestBody Album album){
+        followerService.followAlbumDataByFollower(album);
+    }
+
+    @RequestMapping(value = "notFollowedAlbumData",method = RequestMethod.POST)
+    public List<Album> notFollowedAlbumData(@RequestBody Followers followers){
+        return followerService.notFollowedAlbumData(followers);
+    }
+
 }

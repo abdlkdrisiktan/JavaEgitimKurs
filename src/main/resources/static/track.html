@@ -22,28 +22,30 @@
 </head>
 <body>
 <div class="table-responsive" ng-app="ArtistProjectApp" ng-controller="TrackController" ng-init="pageOpen()">
-    <div class="form-group">
-        <label for="name">Track name</label>
-        <input type="text" class="form-control" id="name" ng-model="track.name" placeholder="Track name">
-    </div>
+    <form>
+        <div class="form-group">
+            <label for="name">Track name</label>
+            <input type="text" class="form-control" id="name" ng-model="track.name" placeholder="Track name">
+        </div>
 
-    <div class="form-group">
-        <label for="href">Track href</label>
-        <input type="text" class="form-control" id="href" ng-model="track.href" placeholder="Track href">
-    </div>
+        <div class="form-group">
+            <label for="href">Track href</label>
+            <input type="text" class="form-control" id="href" ng-model="track.href" placeholder="Track href">
+        </div>
 
-    <div class="form-group">
-        <label for="duration">Duration(ms)</label>
-        <input type="number" class="form-control" id="duration" ng-model="track.durationMs" placeholder="Track duration">
-    </div>
+        <div class="form-group">
+            <label for="duration">Duration(ms)</label>
+            <input type="number" class="form-control" id="duration" ng-model="track.durationMs"
+                   placeholder="Track duration">
+        </div>
 
-    <div class="form-group">
-        <label>Album</label>
-        <select ng-options="x.name for x in albumList track by x.id" ng-model="track.album"></select>
-    </div>
+        <div class="form-group">
+            <label>Album</label>
+            <select ng-options="x.name for x in albumList track by x.id" ng-model="track.album"></select>
+        </div>
 
-    <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
-
+        <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+    </form>
 
     <h2>Track Table</h2>
     <form>

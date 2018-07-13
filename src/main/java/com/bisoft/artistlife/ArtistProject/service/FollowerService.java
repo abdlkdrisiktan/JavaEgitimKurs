@@ -23,22 +23,22 @@ public class FollowerService {
     @Autowired
     AlbumRepository albumRepository;
 
-    public String saveFollowerData(Followers followers){
+    public String saveFollowerData(Followers followers) {
         Followers tempFollower = followerRepository.findByName(followers.getName());
-        if (tempFollower!=null){
+        if (tempFollower != null) {
             return "Data already exists";
-        }else {
+        } else {
             followerRepository.save(followers);
             return "Data saved";
         }
     }
 
-    public List<String> getFollowedAlbumList(Long followerId){
+    public List<String> getFollowedAlbumList(Long followerId) {
         List<Album> albumList = (List<Album>) albumRepository.findAll();
-        List<String>followedAlbumList= new ArrayList<>();
-        for (int i =0;i<albumList.size();i++){
-            for (int j=0;j<albumList.get(i).getFollowers().size();j++){
-                if (albumList.get(i).getFollowers().get(j).getId().equals(followerId)){
+        List<String> followedAlbumList = new ArrayList<>();
+        for (int i = 0; i < albumList.size(); i++) {
+            for (int j = 0; j < albumList.get(i).getFollowers().size(); j++) {
+                if (albumList.get(i).getFollowers().get(j).getId().equals(followerId)) {
                     followedAlbumList.add(albumList.get(i).getName());
                 }
             }
@@ -46,36 +46,60 @@ public class FollowerService {
         return followedAlbumList;
     }
 
-    public void unFollowAlbumData (Long albumId,Long followerId){
+    public void unFollowAlbumData(Long albumId, Long followerId) {
         //albumId ile albüme git, album içerisinde followerları sırala daha sonra
         //follower ıd göre follower bul ve onu sil.
         Album album = albumRepository.findOne(albumId);
         Followers followers = followerRepository.findOne(followerId);
-        if (album!=null && followers!=null){
-            for (int i=0;i<album.getFollowers().size();i++){
-                if (album.getFollowers().get(i).getId().equals(followerId)){
+        if (album != null && followers != null) {
+            for (int i = 0; i < album.getFollowers().size(); i++) {
+                if (album.getFollowers().get(i).getId().equals(followerId)) {
                     album.getFollowers().remove(i);
                 }
             }
             albumRepository.save(album);
-            System.out.println(followers.getName() +" unfollow " + album.getName() + " album");
-        }else {
+            System.out.println(followers.getName() + " unfollow " + album.getName() + " album");
+        } else {
             System.out.println("unFollowAlbumData methods There is no album data");
         }
     }
 
-    public String deleteFollower(Long id){
-       Followers followers = followerRepository.findOne(id);
-        if (followers!=null){
+    public String deleteFollower(Long id) {
+        Followers followers = followerRepository.findOne(id);
+        if (followers != null) {
             followerRepository.delete(followers);
             return "Deleted";
-        } else{
+        } else {
             return "Sorry there is no data here :)";
         }
     }
 
-    public List<Followers> getAllFollowerData(){
+    public List<Followers> getAllFollowerData() {
         return (List<Followers>) followerRepository.findAll();
+    }
+
+    public void followAlbumDataByFollower(Album album) {
+        albumRepository.save(album);
+    }
+
+    public List<Album> notFollowedAlbumData(Followers followers) {
+        List<Album> albumList = (List<Album>) albumRepository.findAll();
+        List<Album> tempAlbumsList = new ArrayList<>();
+        tempAlbumsList = albumList;
+        for (int i = 0; i < albumList.size(); i++) {
+            System.out.println("album list size : " + albumList.size() + " album list sırası " + i);
+            List<Followers> followersList = albumList.get(i).getFollowers();
+            if (followersList.size() >= 1) {
+                System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                for (int j = 0; j < followersList.size(); j++) {
+                    System.out.println(followersList.get(j).getName()+"------------------" + followers.getName());
+                    if (followersList.get(j).getName().contentEquals(followers.getName())) {
+                        tempAlbumsList.remove(i);
+                    }
+                }
+            }
+        }
+        return tempAlbumsList;
     }
 
 }
